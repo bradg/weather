@@ -1,0 +1,2 @@
+class Wunderground::Weather
+end
