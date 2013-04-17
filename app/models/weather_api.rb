@@ -3,6 +3,10 @@ class WeatherApi
   
   def self.get_for_postcode(postcode)
     raise('Weather supplier not set') unless supplier
-    supplier.get_for_postcode(postcode)
+    begin
+      supplier.get_for_postcode(postcode)
+    rescue RuntimeError
+      nil
+    end
   end
 end

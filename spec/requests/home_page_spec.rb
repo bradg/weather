@@ -24,10 +24,17 @@ describe 'home page' do
   end
 
   describe 'after submitting an invalid postcode' do
-    it 'displays the error "invalid zip code format"'
+    it 'displays the error "invalid zip code format"' do
+      get '/weather?postcode=1234'
+      response.body.should =~ /invalid zip code format/
+    end
   end
 
   describe 'after submitting a zip code that does not exist' do
-    it 'displays the error "zipcode not found"'
+    it 'displays the error "zipcode not found"' do
+      TestWeatherSupplier.expects(:get_for_postcode).raises("PostcodeNotFound")
+      get '/weather?postcode=11111'
+      response.body.should =~ /zipcode not found/
+    end
   end
 end
