@@ -22,6 +22,13 @@ end
 
 gem 'jquery-rails'
 
+group :test do
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'rb-inotify', :require => false
+end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
