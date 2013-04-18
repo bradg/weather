@@ -6,9 +6,9 @@ A website for showing the weather in US postcodes.
 To run locally
 --------------
 
-# Clone
-# bundle install
-# bundle exec rails s
+1. git clone git@github.com:bradg/weather.git
+2. bundle install
+3. bundle exec rails s
 
 Tests
 -----
