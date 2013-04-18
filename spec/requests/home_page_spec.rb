@@ -37,4 +37,12 @@ describe 'home page' do
       response.body.should =~ /zipcode not found/
     end
   end
+
+  describe 'when the API has an error' do
+    it 'displays the error "There was a problem with the API"' do
+      TestWeatherSupplier.expects(:get_for_postcode).raises(IOError)
+      get '/weather?postcode=11111'
+      response.body.should =~ /problem with the API/
+    end
+  end
 end
