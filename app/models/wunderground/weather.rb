@@ -5,6 +5,7 @@ class Wunderground::Weather
   API_KEY = 'ed044d75b91fb500'
   SERVICE_PATH = "/api/#{API_KEY}/conditions/q/"
 
+  # Query the API for weather data given a postcode
   def self.get_for_postcode(postcode)
     string_response = open('http://' + SERVICE_HOST + SERVICE_PATH + postcode.to_s + '.json')
     response = JSON.parse(string_response.read)
