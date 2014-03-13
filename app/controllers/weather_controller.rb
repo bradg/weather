@@ -1,20 +1,24 @@
 class WeatherController < ApplicationController
+
   def weather
-    if params['postcode'] =~ /^\d{5}$/ # postcode is 5 digits?
-      begin
-        @results = WeatherApi.get_for_postcode(params['postcode'])
-      rescue
-        flash[:notice] = 'There was a problem with the API'
-        render :index
-        return
-      end
-      if @results.nil?
-        flash[:notice] = 'zipcode not found'
-        render :index
-      end
-    else
-      flash[:notice] = 'invalid zip code format'
+    postcode = params['postcode']
+
+    if postcode.length == 5 # US postcodes
+      get_results(postcode)
+    end
+
+    if @results.nil?
+      @error = 'zipcode not found'
       render :index
     end
   end
+
+  def get_results(postcode)
+    @results = WeatherApi.get_for_postcode(postcode)
+  end
+
+  def index
+  end
+
 end
+

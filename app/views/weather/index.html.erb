@@ -1,3 +1,6 @@
+<% if @error %>
+  <%= @error %>
+<% end %>
 <%= form_tag 'weather', :method => :get do %>
   <p>Enter a US postcode to see the weather there.</p>
   <input type="text" name="postcode" />
